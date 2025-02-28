@@ -1,10 +1,22 @@
+import { useEffect, useState } from "react";
 import { AiOutlineMoneyCollect } from "react-icons/ai";
 import { Row, Col, Statistic } from "antd";
 import { MdBorderClear } from "react-icons/md";
-import useProductStore from "../../store/use-product-store";
+import useProductStore from "../../../store/use-product-store";
+import { orderServices } from "../../../services/order.service";
 
 function AdminContent() {
     const { products } = useProductStore((state) => state);
+    const [totalOrders, setTotalOrders] = useState(0);
+
+    useEffect(() => {
+        const fetchTotalOrders = async () => {
+            const orders = await orderServices.getAllOrders();
+            setTotalOrders(orders.length);
+        };
+        fetchTotalOrders();
+    }, []);
+
     return (
         <div className="w-4/5 m-8">
             <div className="w-full">
@@ -18,7 +30,7 @@ function AdminContent() {
                                     All Orders
                                 </h3>
                             </div>
-                            <Statistic title="Total Orders" value={products.length} />
+                            <Statistic title="Total Orders" value={totalOrders} />
                         </div>
                     </Col>
                     <Col span={8}>
@@ -34,11 +46,9 @@ function AdminContent() {
                     </Col>
                 </Row>
                 <br />
-
-
             </div>
         </div>
-    )
+    );
 }
 
-export default AdminContent
+export default AdminContent;

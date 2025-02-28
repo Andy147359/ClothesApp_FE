@@ -11,7 +11,6 @@ const useProductStore = create(
         fetchProducts: async () => {
             try {
                 const response = await productServices.getProducts();
-                console.log("response", response);
                 if (response && response.data) {
                     set({ products: response.data });
                 }

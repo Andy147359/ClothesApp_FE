@@ -2,9 +2,7 @@ import Login from "../component/auth/Login"
 
 function LoginPage() {
     return (
-        <div>
-            <Login />
-        </div>
+        <Login />
     )
 }
 

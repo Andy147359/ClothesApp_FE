@@ -67,11 +67,10 @@ const CreateProduct = () => {
         try {
             const response = await productServices.createProduct(productData);
             if (response.status === 201) {
-                alert("Product created successfully!");
                 setFormData({
                     name: "",
-                    price: null,
-                    discountPrice: null,
+                    price: "",
+                    discountPrice: "",
                     category: "",
                     description: "",
                     stock: "",
@@ -79,6 +78,7 @@ const CreateProduct = () => {
                 setImageFile(null);
                 setImagePreview(null);
                 addProduct(response.data);
+                alert("Product created successfully!");
             } else {
                 alert("Failed to create product.");
             }
@@ -89,7 +89,7 @@ const CreateProduct = () => {
     };
 
     return (
-        <div className="w-[90%] 800px:w-[50%] bg-white shadow h-[80vh] rounded-[4px] p-3 overflow-y-scroll">
+        <div className="w-[90%] 800px:w-[50%] bg-white shadow h-[100vh] rounded-[4px] p-3 overflow-y-scroll">
             <h5 className="text-[30px] font-Poppins text-center">Create Product</h5>
             <form onSubmit={handleSubmit}>
                 {/* Name */}

@@ -9,9 +9,9 @@ export const orderServices = {
             return Promise.reject(error.response.data);
         }
     },
-    getAllOrdersByUserId: async (userId) => {
+    getAllOrders: async () => {
         try {
-            const response = await axiosInstance.get(`/api/v1/orders/user/${userId}`);
+            const response = await axiosInstance.get(`/api/v1/orders/user`);
             return response.data;
         } catch (error) {
             return Promise.reject(error.response.data);

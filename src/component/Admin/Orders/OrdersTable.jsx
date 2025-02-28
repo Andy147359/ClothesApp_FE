@@ -14,7 +14,7 @@ function OrdersTable() {
     useEffect(() => {
         const getAllOrders = async () => {
             try {
-                const allOrders = await orderServices.getAllOrdersByUserId(user.userId);
+                const allOrders = await orderServices.getAllOrders();
                 setOrders(allOrders);
                 setFilteredOrders(allOrders); // Initialize filtered orders
             } catch (error) {
@@ -22,7 +22,7 @@ function OrdersTable() {
             }
         };
         getAllOrders();
-    }, [user.userId]);
+    }, [orders]);
 
     const columns = [
         {

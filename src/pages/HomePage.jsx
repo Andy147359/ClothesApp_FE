@@ -32,8 +32,6 @@ function HomePage() {
     return (
         <>
             <Header />
-            <SimpleSlider />
-            <Intro />
             <Tag tag='Products List' options={optionsNewArrival} setCategory={setCategory} />
             {products && (<ProductList products={filteredProducts} />)}
             <Footer />

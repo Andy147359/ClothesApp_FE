@@ -40,6 +40,7 @@ function ProductDetails() {
     const handleAddToCart = () => {
         addToCart(product, quantity);
         cartServices.addToCartServer(user.userId, product.id, quantity);
+        alert('Add to cart successfully!');
         setQuantity(1);
     };
     console.log(cart);
@@ -58,7 +59,7 @@ function ProductDetails() {
                         <h1 className="uppercase text-2xl font-bold">{product.name}</h1>
                         <p className="pb-2">Available: {product.stock}</p>
                         <p className="border-b pb-3 text-xl font-medium text-red-500">
-                            {product.discountPrice ? `${product.discountPrice.toLocaleString()}đ` : `${record.price.toLocaleString()}đ`}
+                            {product.discountPrice ? `${product.discountPrice.toLocaleString()}đ` : `${product.price.toLocaleString()}đ`}
                         </p>
                         <p className="py-2">Description: {product.description}</p>
                         <div className="py-2">

@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import AdminSideBar from '../../component/Admin/AdminSideBar';
 import AllProducts from '../../component/Admin/Product/AllProducts';

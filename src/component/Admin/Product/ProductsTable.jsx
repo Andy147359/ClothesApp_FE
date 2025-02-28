@@ -8,7 +8,7 @@ import useProductStore from '../../../store/use-product-store';
 
 function ProductsTable() {
     const products = useProductStore((state) => state.products);
-    console.log(products);
+    // console.log(products);
     const [isPopupVisible, setIsPopupVisible] = useState(false);
     const [product, setProduct] = useState(null);
     const [imageFile, setImageFile] = useState(null);
@@ -68,15 +68,13 @@ function ProductsTable() {
     const handleImageChange = (e) => {
         setImageFile(e.target.files[0]);
     };
-    console.log(formData.category);
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         const productData = new FormData();
-        console.log(formData);
         productData.append("name", formData.name);
-        console.log("name", formData.name);
-        console.log("name", productData);
         productData.append("price", formData.price);
         productData.append("discountPrice", formData.discountPrice || null);
         productData.append("category", formData.category || null); // Ensure category is included
@@ -89,8 +87,6 @@ function ProductsTable() {
         }
 
         try {
-            console.log(product.id);
-            console.log(productData);
             const response = await productServices.updateProduct(product.id, productData);
             if (response?.status === 200) {
                 alert("Product updated successfully!");

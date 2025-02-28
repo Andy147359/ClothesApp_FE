@@ -1,17 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { FaAngleDown } from "react-icons/fa";
 import { Table } from 'antd';
 import { cartServices } from '../../services/cart.service';
 import useAuthStore from '../../store/use-auth-store';
 import useCartStore from '../../store/use-cart-store';
 
-const DataTable = ({ setTotalPayment, setCartItems }) => {
+const DataTable = ({ setTotalPayment }) => {
     const { user } = useAuthStore();
     const { cart } = useCartStore();
     const fetchCartItems = useCartStore((state) => state.fetchCartItems);
     const removeFromCart = useCartStore((state) => state.removeFromCart);
-    const [selectedRowKeys, setSelectedRowKeys] = useState([]);
 
     useEffect(() => {
         if (!user) return;
@@ -19,23 +17,17 @@ const DataTable = ({ setTotalPayment, setCartItems }) => {
     }, []);
 
     useEffect(() => {
-        if (!cart || !selectedRowKeys?.length) {
+        if (!cart || !cart.length) {
             setTotalPayment(0);
             return;
         }
 
-        const selectedItems = cart.filter((_, index) => selectedRowKeys.includes(index));
-        setCartItems(selectedItems);
-        const total = selectedItems.reduce((sum, item) => {
-            return sum + parseFloat(item.product.price) * item.quantity;
+        const total = cart.reduce((sum, item) => {
+            return sum + parseFloat(item?.product?.price) * item.quantity;
         }, 0);
 
         setTotalPayment(total.toFixed(0));
-    }, [selectedRowKeys, cart]);
-
-    const onSelectChange = (newSelectedRowKeys) => {
-        setSelectedRowKeys(newSelectedRowKeys);
-    };
+    }, [cart]);
 
     const handleRemoveCart = (id) => {
         cartServices.removeFromCartServer(id)
@@ -44,17 +36,16 @@ const DataTable = ({ setTotalPayment, setCartItems }) => {
             })
             .catch((error) => {
                 console.error("Failed to remove item from cart:", error);
-            }
-            );
+            });
         removeFromCart(id);
     }
 
     const handleQuantityChange = (id, newQuantity) => {
-        if (newQuantity < 1) return; // Ensure quantity is at least 1
+        if (newQuantity < 1) return;
 
         cartServices.updateCartItemQuantityServer(user.userId, id, newQuantity)
             .then(() => {
-                fetchCartItems(user.userId); // Refresh cart items after updating quantity
+                fetchCartItems(user.userId);
             })
             .catch((error) => {
                 console.error("Failed to update item quantity:", error);
@@ -110,21 +101,12 @@ const DataTable = ({ setTotalPayment, setCartItems }) => {
             title: <RiDeleteBin6Line className='text-red-700 font-bold' />,
             dataIndex: '',
             render: (_, record) => (
-                console.log(record),
-                <div className="">
-                    <RiDeleteBin6Line onClick={() => { handleRemoveCart(record.id) }} className='text-red-600' />
+                <div>
+                    <RiDeleteBin6Line onClick={() => handleRemoveCart(record.id)} className='text-red-600' />
                 </div>
             ),
         }
     ];
-
-    const rowSelection = {
-        selectedRowKeys,
-        onChange: onSelectChange,
-        selections: [
-            Table.SELECTION_ALL,
-        ],
-    };
 
     const dataSource = cart && cart.map((item, index) => ({
         key: index,
@@ -139,13 +121,8 @@ const DataTable = ({ setTotalPayment, setCartItems }) => {
     return (
         <div className="ms-5">
             <Table
-                rowSelection={rowSelection} columns={columns} dataSource={dataSource}
-                pagination={{
-                    pageSize: 4, // Mỗi trang hiển thị tối đa 5 sản phẩm
-                    defaultCurrent: 1, // Trang mặc định là 1
-                    total: dataSource.length, // Tổng số sản phẩm
-                    showTotal: (total) => `Tổng ${total} sản phẩm`, // Hiển thị tổng số sản phẩm
-                }}
+                columns={columns}
+                dataSource={dataSource}
             />
         </div>
     );
