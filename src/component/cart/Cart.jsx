@@ -59,14 +59,19 @@ function Cart() {
             <div className="w-9/12 mx-auto bg-blue-50 py-5">
                 <div className="flex">
                     <div className="w-2/3 pr-4">
+                        {/* Bảng các sản phẩm trong giỏ hàng */}
                         <DataTable setTotalPayment={setTotalPayment} />
                     </div>
+
                     <div className="w-1/3 px-8 py-10">
                         <div className="p-4 bg-white mt-4">
+                            {/* Hiển thị tổng số tiền sẽ phải thanh toán */}
                             <div className="flex justify-between py-4">
                                 <div className="">Total Payment</div>
                                 <div className="">{Number(totalPayment).toLocaleString()}đ</div>
                             </div>
+
+                            {/* Nút thực hiện thanh toán */}
                             <button onClick={handleCheckOut} className='w-full py-2 bg-black rounded text-white'>Checkout</button>
                         </div>
                     </div>

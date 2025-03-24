@@ -29,6 +29,7 @@ const Signup = () => {
             <div className="bg-white p-6 rounded shadow-md w-96">
                 <h2 className="text-2xl font-bold text-center mb-4">Register</h2>
                 <form onSubmit={handleSubmit} className="space-y-4" autoComplete="off">
+                    {/* Ô nhập tên đầy đủ */}
                     <input
                         type="text"
                         name="name"
@@ -36,6 +37,8 @@ const Signup = () => {
                         className="w-full p-2 border rounded"
                         required
                     />
+
+                    {/* Ô nhập email */}
                     <input
                         type="email"
                         name="email"
@@ -43,6 +46,8 @@ const Signup = () => {
                         className="w-full p-2 border rounded"
                         required
                     />
+
+                    {/* Ô nhập mật khẩu */}
                     <input
                         type="password"
                         name="password"
@@ -50,10 +55,14 @@ const Signup = () => {
                         className="w-full p-2 border rounded"
                         required
                     />
+
+                    {/* Nút đăng ký */}
                     <button type="submit" className="w-full bg-blue-600 text-white p-2 rounded">
                         Submit
                     </button>
                 </form>
+
+                {/* Nút chuyển sang trang đăng nhập */}
                 <p className="text-center mt-2">
                     Already have an account? <Link to="/login" className="text-blue-600">Sign In</Link>
                 </p>

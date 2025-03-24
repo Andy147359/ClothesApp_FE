@@ -1,5 +1,3 @@
-import SimpleSlider from '../component/Layout/SimpleSlider';
-import Intro from '../component/Layout/Intro';
 import Tag from '../component/Layout/Tag';
 import ProductList from "../component/product/ProductList";
 import Header from '../component/Layout/Header';
@@ -32,8 +30,13 @@ function HomePage() {
     return (
         <>
             <Header />
+
+            {/* Danh sách loại sản phấm (màu cam) */}
             <Tag tag='Products List' options={optionsNewArrival} setCategory={setCategory} />
+
+            {/* Danh sách tât cả sản phẩm trong cơ sở dữ liệu */}
             {products && (<ProductList products={filteredProducts} />)}
+
             <Footer />
         </>
     )

@@ -5,9 +5,15 @@ const ProductCard = ({ id, name, price, discountPrice, imageUrl }) => {
     const navigate = useNavigate();
     return (
         <div onClick={() => navigate(`/product/${id}`)} className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md flex flex-col items-center">
+            {/* Ảnh sản phẩm */}
             <img src={imageUrl} alt={name} className="w-full h-48 object-cover" />
+
+            {/* Tên sản phẩm và giá */}
             <div className="w-full text-left p-4">
+                {/* Tên sản phẩm */}
                 <h2 className="text-lg font-semibold">{name}</h2>
+
+                {/* Giá sản phâm */}
                 {discountPrice
                     ? (
                         <>
@@ -22,7 +28,6 @@ const ProductCard = ({ id, name, price, discountPrice, imageUrl }) => {
                     : `${Number(price).toLocaleString()}đ`
                 }
             </div>
-            {/* <button className='py-2  w-full bg-gray-400 text-black font-bold text-center mt-auto rounded'>Buy now</button> */}
         </div>
     );
 }

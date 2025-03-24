@@ -47,56 +47,49 @@ function ProductDetails() {
 
     return (
         <div className="w-full bg-slate-300">
-            {/* Main Product Detail Section */}
             <div className="w-[1200px] mx-auto bg-white flex px-2">
+                {/* Ảnh sản phẩm */}
                 <img
                     className="w-[500px] h-[500px] object-cover  p-5"
                     src={product.imageUrl || "https://via.placeholder.com/500"}
                     alt={product.name}
                 />
+
+                {/* Nội dung bên phải */}
                 <div className="w-1/2">
                     <div className="px-10 py-12">
+                        {/* Tên sản phẩm */}
                         <h1 className="uppercase text-2xl font-bold">{product.name}</h1>
+
+                        {/* Số lương SP trong kho */}
                         <p className="pb-2">Available: {product.stock}</p>
+
+                        {/* Giá sản phẩm */}
                         <p className="border-b pb-3 text-xl font-medium text-red-500">
                             {product.discountPrice ? `${product.discountPrice.toLocaleString()}đ` : `${product.price.toLocaleString()}đ`}
                         </p>
+
+                        {/* Mô tả sản phẩm */}
                         <p className="py-2">Description: {product.description}</p>
-                        <div className="py-2">
-                            {product.colors?.map((color, index) => (
-                                <a key={index} className="rounded-lg py-2 px-4 border mr-2 text-center">
-                                    {color}
-                                </a>
-                            ))}
-                        </div>
 
-                        <div className="py-2">
-                            {product.sizes?.map((size, index) => (
-                                <a key={index} className="py-2 px-4 mr-2 border rounded-lg">
-                                    {size}
-                                </a>
-                            ))}
-                        </div>
-
-                        <p className="pt-6">Count</p>
+                        {/* Chọn số lượng để thêm giỏ hàng */}
                         <div className="flex items-center py-2">
                             <p onClick={() => { if (quantity > 1) setQuantity(quantity - 1); }} className="text-xl border px-4 py-2 cursor-pointer">−</p>
                             <a className="px-4 py-2 border rounded-lg mx-4">{quantity}</a>
                             <p onClick={() => { setQuantity(quantity + 1) }} className="text-xl border px-4 py-2 cursor-pointer">+</p>
                         </div>
+
+                        {/* Nút thêm giỏ hàng */}
                         <div className="flex">
                             <button onClick={handleAddToCart} className="px-4 py-2 w-full font-medium bg-slate-300 text-black rounded-lg">
                                 Add to cart
                             </button>
-                            {/* <button className="px-4 py-2 w-full font-medium bg-red-500 text-black rounded-lg ml-4">
-                                Buy now
-                            </button> */}
                         </div>
                     </div>
                 </div>
             </div>
 
-            {/* Other Products Section */}
+            {/* Danh sách sản phẩm liên quan */}
             <div className="w-[1200px] mx-auto bg-white px-2">
                 <h2 className="pt-8 pb-2 font-medium text-xl">#Other Products</h2>
                 <ProductList products={products} />

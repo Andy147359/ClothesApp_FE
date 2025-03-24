@@ -28,6 +28,7 @@ const Login = () => {
             <div className="bg-white p-6 rounded shadow-md w-96">
                 <h2 className="text-2xl font-bold text-center mb-4">Login</h2>
                 <form onSubmit={handleSubmit} className="space-y-4">
+                    {/* Nhập email */}
                     <input
                         type="email"
                         name="email"
@@ -35,6 +36,8 @@ const Login = () => {
                         className="w-full p-2 border rounded"
                         required
                     />
+
+                    {/* Nhập mật khẩu */}
                     <input
                         type="password"
                         name="password"
@@ -42,10 +45,13 @@ const Login = () => {
                         className="w-full p-2 border rounded"
                         required
                     />
+                    {/* Nút đăng nhập */}
                     <button type="submit" className="w-full bg-blue-600 text-white p-2 rounded">
                         Submit
                     </button>
                 </form>
+
+                {/* Nút chuyển sang giao diện đăng ký tài khoản */}
                 <p className="text-center mt-2">
                     Not have an account? <Link to="/sign-up" className="text-blue-600">Sign Up</Link>
                 </p>

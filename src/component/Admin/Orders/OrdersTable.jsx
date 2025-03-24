@@ -104,7 +104,7 @@ function OrdersTable() {
             <Table
                 columns={columns}
                 dataSource={dataSource}
-                pagination={{ pageSize: 4 }}
+                pagination={{ pageSize: 10 }}
                 bordered
             />
 

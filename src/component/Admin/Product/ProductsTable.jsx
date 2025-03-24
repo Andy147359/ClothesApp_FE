@@ -173,17 +173,23 @@ function ProductsTable() {
             <Table
                 columns={columns}
                 dataSource={products}
-                pagination={{ pageSize: 4 }}
+                pagination={{ pageSize: 10 }}
                 rowKey="id"
             />
             <Popup isOpen={isPopupVisible} onClose={() => setIsPopupVisible(false)}>
                 <div className="">
+                    {/* Popup chỉnh sửa sản phẩm */}
                     <h5 className='text-center text-xl uppercase'>Edit Product</h5>
+
+                    {/* Form chỉnh sửa sản phẩm */}
                     <form onSubmit={handleSubmit}>
                         <div>
+                            {/* Label nhập tên sản phẩm */}
                             <label className="pb-2">
                                 Name <span className="text-red-500">*</span>
                             </label>
+
+                            {/* Ô nhập tên sản phẩm */}
                             <input
                                 type="text"
                                 name="name"
@@ -193,12 +199,16 @@ function ProductsTable() {
                                 placeholder="Enter your product name..."
                             />
                         </div>
+
                         <br />
 
                         <div>
+                            {/* Label nhập giá sản phẩm */}
                             <label className="pb-2">
                                 Price <span className="text-red-500">*</span>
                             </label>
+
+                            {/* Ô nhập giá sản phẩm */}
                             <input
                                 type="number"
                                 name="price"
@@ -208,10 +218,14 @@ function ProductsTable() {
                                 placeholder="Enter your product price..."
                             />
                         </div>
+
                         <br />
 
                         <div>
+                            {/* Label nhập giá giảm sản phẩm */}
                             <label className="pb-2">Discount Price</label>
+
+                            {/* Ô nhập giá giảm */}
                             <input
                                 type="number"
                                 name="discountPrice"
@@ -221,10 +235,13 @@ function ProductsTable() {
                                 placeholder="Enter your product discount price..."
                             />
                         </div>
+
                         <br />
 
                         <div className="">
                             <label className="pb-2">Category</label>
+
+                            {/* Ô chọn loại sản phẩm */}
                             <select
                                 name="category"
                                 value={formData.category}
@@ -238,8 +255,11 @@ function ProductsTable() {
                                 <option value="Hats">Hats</option>
                             </select>
                         </div>
+
                         <br />
+
                         <div>
+                            {/* Ô nhập mô tả sản phẩm */}
                             <label className="pb-2">Description</label>
                             <textarea
                                 name="description"
@@ -250,7 +270,9 @@ function ProductsTable() {
                             ></textarea>
                         </div>
                         <br />
+
                         <div>
+                            {/* Ô nhập số lượng sản phẩm trong kho */}
                             <label className="pb-2">Stock</label>
                             <input
                                 type="number"
@@ -262,8 +284,9 @@ function ProductsTable() {
                             />
                         </div>
                         <br />
-                        {/* Image Preview Section */}
+
                         <div>
+                            {/* Ô hiển thị ảnh sản phẩm */}
                             <label className="pb-2">Current Image</label>
                             {formData.imageUrl ? (
                                 <img
@@ -276,8 +299,10 @@ function ProductsTable() {
                             )}
                         </div>
                         <br />
+
                         <div>
                             <label className="pb-2">Image</label>
+                            {/* Ô chọn ảnh sản phẩm */}
                             <input
                                 type="file"
                                 name="imageFile"
@@ -285,7 +310,10 @@ function ProductsTable() {
                                 className="mt-2 block w-full px-3 h-[35px] border border-gray-300 rounded-[3px]"
                             />
                         </div>
+
                         <br />
+
+                        {/* Nút cập nhật sản phẩm */}
                         <button
                             type="submit"
                             className="w-full bg-blue-500 text-white p-2 rounded-md"
